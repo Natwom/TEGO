@@ -9,7 +9,6 @@ from app import models, schemas
 
 router = APIRouter(prefix="/api/blog", tags=["blog"])
 
-# Use the SAME path resolution as main.py
 BACKEND_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 UPLOAD_DIR = os.path.join(BACKEND_DIR, "uploads", "blogs")
 os.makedirs(UPLOAD_DIR, exist_ok=True)
@@ -39,7 +38,7 @@ def save_image(file: UploadFile, folder: str) -> Optional[str]:
         with open(path, "wb") as f:
             f.write(contents)
         print(f"[BLOG] Image saved successfully: {unique}")
-        return f"http://localhost:8000/uploads/blogs/{unique}"
+        return f"https://tego-api.onrender.com/uploads/blogs/{unique}"
     except Exception as e:
         print(f"[BLOG] ERROR saving image: {e}")
         raise HTTPException(status_code=500, detail=f"Failed to save image: {str(e)}")

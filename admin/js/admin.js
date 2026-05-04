@@ -1,4 +1,5 @@
-const API_BASE_URL = 'http://localhost:8000/api';
+const API_BASE_URL = 'https://tego-api.onrender.com/api';
+// const API_BASE_URL = 'http://localhost:8000/api'; // local dev
 
 console.log('[ADMIN] Admin JS loaded successfully');
 

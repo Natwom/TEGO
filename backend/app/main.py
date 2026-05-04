@@ -17,25 +17,21 @@ UPLOADS_DIR = os.path.join(BACKEND_DIR, "uploads")
 os.makedirs(os.path.join(UPLOADS_DIR, "projects"), exist_ok=True)
 os.makedirs(os.path.join(UPLOADS_DIR, "blogs"), exist_ok=True)
 
+print(f"[STARTUP] Backend dir: {BACKEND_DIR}")
+print(f"[STARTUP] Uploads dir: {UPLOADS_DIR}")
+print(f"[STARTUP] Projects dir exists: {os.path.exists(os.path.join(UPLOADS_DIR, 'projects'))}")
+print(f"[STARTUP] Blogs dir exists: {os.path.exists(os.path.join(UPLOADS_DIR, 'blogs'))}")
+
 app = FastAPI(
     title="TEGO API",
     description="Turkana Eco-Green Organization API",
     version="1.0.0"
 )
 
-# CORS - configure for production
-# Replace with your actual frontend domain after deployment
-ALLOWED_ORIGINS = [
-    "http://localhost:5500",      # Live Server (local dev)
-    "http://127.0.0.1:5500",
-    "http://localhost:8000",
-    "https://tego-frontend.onrender.com",  # Your future frontend URL
-    # Add more as needed
-]
-
+# CORS - allow all for testing, restrict in production
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=ALLOWED_ORIGINS,
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

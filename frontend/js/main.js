@@ -1,6 +1,7 @@
 // TEGO Main JavaScript
 
-const API_BASE_URL = 'http://localhost:8000/api';
+const API_BASE_URL = 'https://tego-api.onrender.com/api';
+// const API_BASE_URL = 'http://localhost:8000/api'; // local dev
 
 // Mobile Menu Toggle
 const mobileMenuBtn = document.getElementById('mobileMenuBtn');
