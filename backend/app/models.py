@@ -3,7 +3,7 @@ from sqlalchemy.sql import func
 from app.database import Base
 
 class User(Base):
-    __tablename__ = "users"
+    __tablename__ = "tego_users"
     
     id = Column(Integer, primary_key=True, index=True)
     username = Column(String(50), unique=True, index=True)
@@ -14,7 +14,7 @@ class User(Base):
     created_at = Column(DateTime(timezone=True), server_default=func.now())
 
 class Project(Base):
-    __tablename__ = "projects"
+    __tablename__ = "tego_projects"
     
     id = Column(Integer, primary_key=True, index=True)
     title = Column(String(200), nullable=False)
@@ -30,7 +30,7 @@ class Project(Base):
     updated_at = Column(DateTime(timezone=True), onupdate=func.now())
 
 class BlogPost(Base):
-    __tablename__ = "blog_posts"
+    __tablename__ = "tego_blog_posts"
     
     id = Column(Integer, primary_key=True, index=True)
     title = Column(String(200), nullable=False)
@@ -44,7 +44,7 @@ class BlogPost(Base):
     created_at = Column(DateTime(timezone=True), server_default=func.now())
 
 class ContactMessage(Base):
-    __tablename__ = "contact_messages"
+    __tablename__ = "tego_contact_messages"
     
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String(100), nullable=False)
@@ -56,7 +56,7 @@ class ContactMessage(Base):
     created_at = Column(DateTime(timezone=True), server_default=func.now())
 
 class Testimonial(Base):
-    __tablename__ = "testimonials"
+    __tablename__ = "tego_testimonials"
     
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String(100), nullable=False)
@@ -67,7 +67,7 @@ class Testimonial(Base):
     created_at = Column(DateTime(timezone=True), server_default=func.now())
 
 class ImpactMetric(Base):
-    __tablename__ = "impact_metrics"
+    __tablename__ = "tego_impact_metrics"
     
     id = Column(Integer, primary_key=True, index=True)
     label = Column(String(100), nullable=False)
