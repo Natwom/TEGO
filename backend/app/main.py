@@ -10,7 +10,6 @@ from app.routers import projects, blog, contact, testimonials, impact, admin
 Base.metadata.create_all(bind=engine)
 
 # Determine the absolute path to the backend directory
-# __file__ is app/main.py, so go up one level to get backend/
 BACKEND_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 UPLOADS_DIR = os.path.join(BACKEND_DIR, "uploads")
 
@@ -18,27 +17,31 @@ UPLOADS_DIR = os.path.join(BACKEND_DIR, "uploads")
 os.makedirs(os.path.join(UPLOADS_DIR, "projects"), exist_ok=True)
 os.makedirs(os.path.join(UPLOADS_DIR, "blogs"), exist_ok=True)
 
-print(f"[STARTUP] Backend dir: {BACKEND_DIR}")
-print(f"[STARTUP] Uploads dir: {UPLOADS_DIR}")
-print(f"[STARTUP] Projects dir exists: {os.path.exists(os.path.join(UPLOADS_DIR, 'projects'))}")
-print(f"[STARTUP] Blogs dir exists: {os.path.exists(os.path.join(UPLOADS_DIR, 'blogs'))}")
-
 app = FastAPI(
     title="TEGO API",
     description="Turkana Eco-Green Organization API",
     version="1.0.0"
 )
 
-# CORS - MUST be added BEFORE routers
+# CORS - configure for production
+# Replace with your actual frontend domain after deployment
+ALLOWED_ORIGINS = [
+    "http://localhost:5500",      # Live Server (local dev)
+    "http://127.0.0.1:5500",
+    "http://localhost:8000",
+    "https://tego-frontend.onrender.com",  # Your future frontend URL
+    # Add more as needed
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=ALLOWED_ORIGINS,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# Serve uploaded images at http://localhost:8000/uploads/...
+# Serve uploaded images
 app.mount("/uploads", StaticFiles(directory=UPLOADS_DIR), name="uploads")
 
 # Include routers
@@ -51,7 +54,7 @@ app.include_router(admin.router)
 
 @app.get("/")
 def root():
-    return {"message": "Welcome to TEGO API", "status": "active"}
+    return {"message": "Welcome to TEGO API", "status": "active", "docs": "/docs"}
 
 @app.get("/health")
 def health_check():
