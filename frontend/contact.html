@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - TEGO</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">🌿</div>
+                <span>TEGO</span>
+            </a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="work.html">Our Work</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="get-involved.html">Get Involved</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+                <li><a href="get-involved.html" class="btn btn-primary" style="padding: 0.5rem 1.25rem; font-size: 0.9rem;">Donate</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="about-hero">
+        <div class="container">
+            <h1>Contact Us</h1>
+            <p style="font-size: 1.2rem; opacity: 0.9;">We'd love to hear from you</p>
+        </div>
+    </section>
+
+    <section class="section" style="background: white;">
+        <div class="container">
+            <div class="contact-grid">
+                <div>
+                    <h2 style="color: var(--dark-green); margin-bottom: 1rem;">Get in Touch</h2>
+                    <p style="color: var(--gray); margin-bottom: 2rem; line-height: 1.8;">Have a question, want to partner, or interested in volunteering? Reach out to us using any of the methods below or fill out the contact form.</p>
+                    
+                    <div class="contact-info-item">
+                        <div class="contact-info-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div>
+                            <h4 style="color: var(--dark-green); margin-bottom: 0.25rem;">Location</h4>
+                            <p style="color: var(--gray);">Turkana County, Kenya<br>Lodwar Town, Near County Offices</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-info-item">
+                        <div class="contact-info-icon"><i class="fas fa-envelope"></i></div>
+                        <div>
+                            <h4 style="color: var(--dark-green); margin-bottom: 0.25rem;">Email</h4>
+                            <p style="color: var(--gray);">info@tego.org<br>partnerships@tego.org</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-info-item">
+                        <div class="contact-info-icon"><i class="fas fa-phone"></i></div>
+                        <div>
+                            <h4 style="color: var(--dark-green); margin-bottom: 0.25rem;">Phone</h4>
+                            <p style="color: var(--gray);">+254 700 000 000<br>+254 733 000 000</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-info-item">
+                        <div class="contact-info-icon"><i class="fas fa-clock"></i></div>
+                        <div>
+                            <h4 style="color: var(--dark-green); margin-bottom: 0.25rem;">Office Hours</h4>
+                            <p style="color: var(--gray);">Monday - Friday: 8:00 AM - 5:00 PM<br>Saturday: 9:00 AM - 1:00 PM</p>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 2rem;">
+                        <h4 style="color: var(--dark-green); margin-bottom: 1rem;">Follow Us</h4>
+                        <div class="footer-social" style="margin-top: 0;">
+                            <a href="#" style="background: var(--primary-green); color: white;"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" style="background: var(--primary-green); color: white;"><i class="fab fa-twitter"></i></a>
+                            <a href="#" style="background: var(--primary-green); color: white;"><i class="fab fa-instagram"></i></a>
+                            <a href="#" style="background: var(--primary-green); color: white;"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <form id="contactForm" style="background: var(--light-gray); padding: 2.5rem; border-radius: 16px;">
+                        <h3 style="color: var(--dark-green); margin-bottom: 1.5rem;">Send us a Message</h3>
+                        
+                        <div class="form-group">
+                            <label for="name">Full Name *</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" class="form-control">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Subject *</label>
+                            <select id="subject" class="form-control" required>
+                                <option value="">Select a subject...</option>
+                                <option value="general">General Inquiry</option>
+                                <option value="partnership">Partnership Opportunity</option>
+                                <option value="donation">Donation Question</option>
+                                <option value="volunteer">Volunteering</option>
+                                <option value="media">Media Inquiry</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message *</label>
+                            <textarea id="message" class="form-control" rows="5" required placeholder="Tell us how we can help..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section style="padding: 0;">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d255281.19891822786!2d35.86060765!3d3.0479418!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1799e4c423e9c5fd%3A0x5e8a0b3e7e2e0b0a!2sTurkana%20County%2C%20Kenya!5e0!3m2!1sen!2s!4v1700000000000!5m2!1sen!2s" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo" style="color: white;">
+                        <div class="logo-icon" style="background: var(--accent-green);">🌿</div>
+                        <span>TEGO</span>
+                    </div>
+                    <p>Turkana Eco-Green Organization is committed to empowering communities through climate resilience and sustainable development.</p>
+                </div>
+                <div>
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="work.html">Our Work</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Get Involved</h4>
+                    <ul class="footer-links">
+                        <li><a href="get-involved.html">Donate</a></li>
+                        <li><a href="get-involved.html">Volunteer</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Contact</h4>
+                    <ul class="footer-links">
+                        <li>📍 Turkana County, Kenya</li>
+                        <li>📧 info@tego.org</li>
+                        <li>📱 +254 700 000 000</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 TEGO. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

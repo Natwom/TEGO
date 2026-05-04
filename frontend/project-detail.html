@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Details - TEGO</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .detail-hero {
+            position: relative;
+            height: 400px;
+            overflow: hidden;
+        }
+        .detail-hero img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .detail-hero-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            padding: 3rem 0 2rem;
+            color: white;
+        }
+        .detail-meta {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+        .detail-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+        .detail-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 1rem;
+        }
+        .detail-sidebar {
+            background: var(--light-gray);
+            border-radius: 12px;
+            padding: 2rem;
+            height: fit-content;
+        }
+        .detail-sidebar h3 {
+            margin-bottom: 1rem;
+            color: var(--dark-green);
+        }
+        .detail-sidebar .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #ddd;
+        }
+        .detail-sidebar .info-row:last-child {
+            border-bottom: none;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary-green);
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 2rem;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        .loading-spinner {
+            text-align: center;
+            padding: 4rem;
+            font-size: 1.2rem;
+            color: var(--gray);
+        }
+        .error-message {
+            text-align: center;
+            padding: 4rem;
+            color: #dc2626;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">🌿</div>
+                <span>TEGO</span>
+            </a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="work.html">Our Work</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="get-involved.html">Get Involved</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="get-involved.html" class="btn btn-primary" style="padding: 0.5rem 1.25rem; font-size: 0.9rem;">Donate</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div id="projectDetail">
+        <div class="loading-spinner">
+            <i class="fas fa-spinner fa-spin"></i> Loading project...
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo" style="color: white;">
+                        <div class="logo-icon" style="background: var(--accent-green);">🌿</div>
+                        <span>TEGO</span>
+                    </div>
+                    <p>Turkana Eco-Green Organization is committed to empowering communities through climate resilience and sustainable development.</p>
+                </div>
+                <div>
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="work.html">Our Work</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Get Involved</h4>
+                    <ul class="footer-links">
+                        <li><a href="get-involved.html">Donate</a></li>
+                        <li><a href="get-involved.html">Volunteer</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Contact</h4>
+                    <ul class="footer-links">
+                        <li>📍 Turkana County, Kenya</li>
+                        <li>📧 info@tego.org</li>
+                        <li>📱 +254 700 000 000</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 TEGO. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Project detail page logic
+        async function loadProjectDetail() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const projectId = urlParams.get('id');
+            const container = document.getElementById('projectDetail');
+
+            if (!projectId) {
+                container.innerHTML = '<div class="error-message"><h2>Project Not Found</h2><p>No project ID provided.</p><a href="projects.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Projects</a></div>';
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/projects/${projectId}`);
+                if (!response.ok) throw new Error('Project not found');
+                const project = await response.json();
+
+                container.innerHTML = `
+                    <div class="detail-hero">
+                        <img src="${project.image_url || 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1200'}" alt="${project.title}">
+                        <div class="detail-hero-overlay">
+                            <div class="container">
+                                <a href="projects.html" class="back-link" style="color:white; margin-bottom:1rem;">
+                                    <i class="fas fa-arrow-left"></i> Back to Projects
+                                </a>
+                                <h1 style="font-size: 2.5rem; margin-bottom: 0.5rem;">${project.title}</h1>
+                                <div class="detail-meta">
+                                    <span><i class="fas fa-tag"></i> ${project.category || 'General'}</span>
+                                    <span><i class="fas fa-map-marker-alt"></i> ${project.location || 'Turkana County'}</span>
+                                    <span><i class="fas fa-users"></i> ${project.beneficiaries || 0} beneficiaries</span>
+                                    <span><i class="fas fa-calendar"></i> ${new Date(project.created_at).toLocaleDateString()}</span>
+                                    <span class="badge badge-${project.status === 'ongoing' ? 'success' : project.status === 'completed' ? 'secondary' : 'warning'}" style="padding: 0.25rem 0.75rem; border-radius: 999px;">
+                                        ${project.status}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container" style="padding: 3rem 1rem;">
+                        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 3rem;">
+                            <div class="detail-content" style="padding: 0;">
+                                <h2 style="color: var(--dark-green); margin-bottom: 1rem;">About This Project</h2>
+                                <p style="color: var(--gray); line-height: 1.8; font-size: 1.1rem; margin-bottom: 2rem;">
+                                    ${project.description || project.summary || 'No description available.'}
+                                </p>
+                                
+                                ${project.summary && project.description ? `
+                                <h3 style="color: var(--dark-green); margin-bottom: 1rem;">Summary</h3>
+                                <p style="color: var(--gray); line-height: 1.8; margin-bottom: 2rem;">${project.summary}</p>
+                                ` : ''}
+
+                                <div style="background: var(--cream); padding: 2rem; border-radius: 12px; margin-top: 2rem;">
+                                    <h3 style="color: var(--dark-green); margin-bottom: 1rem;">Support This Project</h3>
+                                    <p style="color: var(--gray); margin-bottom: 1.5rem;">Your contribution helps us continue this vital work in the community.</p>
+                                    <a href="get-involved.html" class="btn btn-primary">Donate Now</a>
+                                </div>
+                            </div>
+
+                            <div class="detail-sidebar">
+                                <h3>Project Info</h3>
+                                <div class="info-row">
+                                    <span>Status</span>
+                                    <strong style="color: var(--dark-green);">${project.status}</strong>
+                                </div>
+                                <div class="info-row">
+                                    <span>Location</span>
+                                    <strong>${project.location || 'N/A'}</strong>
+                                </div>
+                                <div class="info-row">
+                                    <span>Category</span>
+                                    <strong>${project.category || 'General'}</strong>
+                                </div>
+                                <div class="info-row">
+                                    <span>Beneficiaries</span>
+                                    <strong>${project.beneficiaries || 0}</strong>
+                                </div>
+                                <div class="info-row">
+                                    <span>Started</span>
+                                    <strong>${new Date(project.created_at).toLocaleDateString()}</strong>
+                                </div>
+                                ${project.updated_at ? `
+                                <div class="info-row">
+                                    <span>Last Updated</span>
+                                    <strong>${new Date(project.updated_at).toLocaleDateString()}</strong>
+                                </div>
+                                ` : ''}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } catch (error) {
+                container.innerHTML = `
+                    <div class="error-message">
+                        <h2>Error Loading Project</h2>
+                        <p>${error.message}</p>
+                        <a href="projects.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Projects</a>
+                    </div>
+                `;
+            }
+        }
+
+        // Load detail when DOM is ready
+        if (document.getElementById('projectDetail')) {
+            loadProjectDetail();
+        }
+    </script>
+</body>
+</html>

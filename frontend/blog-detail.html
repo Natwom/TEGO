@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Post - TEGO</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .blog-detail-hero {
+            position: relative;
+            height: 450px;
+            overflow: hidden;
+        }
+        .blog-detail-hero img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .blog-detail-hero-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.85));
+            padding: 4rem 0 2rem;
+            color: white;
+        }
+        .blog-detail-meta {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+        .blog-detail-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+        .blog-detail-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 1rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--gray);
+        }
+        .blog-detail-content p {
+            margin-bottom: 1.5rem;
+        }
+        .author-box {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: var(--light-gray);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-top: 3rem;
+        }
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--primary-green);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary-green);
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 2rem;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        .loading-spinner {
+            text-align: center;
+            padding: 4rem;
+            font-size: 1.2rem;
+            color: var(--gray);
+        }
+        .error-message {
+            text-align: center;
+            padding: 4rem;
+            color: #dc2626;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">🌿</div>
+                <span>TEGO</span>
+            </a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="work.html">Our Work</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="get-involved.html">Get Involved</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="get-involved.html" class="btn btn-primary" style="padding: 0.5rem 1.25rem; font-size: 0.9rem;">Donate</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div id="blogDetail">
+        <div class="loading-spinner">
+            <i class="fas fa-spinner fa-spin"></i> Loading blog post...
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo" style="color: white;">
+                        <div class="logo-icon" style="background: var(--accent-green);">🌿</div>
+                        <span>TEGO</span>
+                    </div>
+                    <p>Turkana Eco-Green Organization is committed to empowering communities through climate resilience and sustainable development.</p>
+                </div>
+                <div>
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="work.html">Our Work</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Get Involved</h4>
+                    <ul class="footer-links">
+                        <li><a href="get-involved.html">Donate</a></li>
+                        <li><a href="get-involved.html">Volunteer</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Contact</h4>
+                    <ul class="footer-links">
+                        <li>📍 Turkana County, Kenya</li>
+                        <li>📧 info@tego.org</li>
+                        <li>📱 +254 700 000 000</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 TEGO. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Blog detail page logic
+        async function loadBlogDetail() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const postId = urlParams.get('id');
+            const container = document.getElementById('blogDetail');
+
+            if (!postId) {
+                container.innerHTML = '<div class="error-message"><h2>Post Not Found</h2><p>No post ID provided.</p><a href="blog.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Blog</a></div>';
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/blog/${postId}`);
+                if (!response.ok) throw new Error('Post not found');
+                const post = await response.json();
+
+                container.innerHTML = `
+                    <div class="blog-detail-hero">
+                        <img src="${post.image_url || 'https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=1200'}" alt="${post.title}">
+                        <div class="blog-detail-hero-overlay">
+                            <div class="container">
+                                <a href="blog.html" class="back-link" style="color:white; margin-bottom:1rem;">
+                                    <i class="fas fa-arrow-left"></i> Back to Blog
+                                </a>
+                                <span class="badge badge-info" style="display:inline-block; margin-bottom:1rem; padding: 0.35rem 1rem; border-radius: 999px; background: var(--accent-green);">
+                                    ${post.category || 'General'}
+                                </span>
+                                <h1 style="font-size: 2.5rem; margin-bottom: 0.5rem; line-height: 1.2;">${post.title}</h1>
+                                <div class="blog-detail-meta">
+                                    <span><i class="fas fa-user"></i> ${post.author || 'TEGO Team'}</span>
+                                    <span><i class="fas fa-calendar"></i> ${new Date(post.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+                                    <span><i class="fas fa-clock"></i> ${Math.ceil((post.content || post.excerpt || '').length / 1000)} min read</span>
+                                    ${post.is_published ? '' : '<span style="background: #f59e0b; padding: 0.25rem 0.75rem; border-radius: 999px; font-size: 0.85rem;">Draft</span>'}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container">
+                        <div class="blog-detail-content">
+                            ${post.excerpt ? `<p style="font-size: 1.25rem; font-weight: 500; color: var(--dark-green); font-style: italic; border-left: 4px solid var(--primary-green); padding-left: 1.5rem; margin-bottom: 2rem;">${post.excerpt}</p>` : ''}
+                            
+                            <div class="post-body">
+                                ${(post.content || 'No content available.').replace(/\n/g, '<br>')}
+                            </div>
+
+                            <div class="author-box">
+                                <div class="author-avatar">${(post.author || 'T').charAt(0)}</div>
+                                <div>
+                                    <h4 style="margin-bottom: 0.25rem; color: var(--dark-green);">${post.author || 'TEGO Team'}</h4>
+                                    <p style="font-size: 0.9rem; color: var(--gray);">Writer at TEGO</p>
+                                </div>
+                            </div>
+
+                            <div style="margin-top: 3rem; text-align: center;">
+                                <h3 style="color: var(--dark-green); margin-bottom: 1rem;">Share This Post</h3>
+                                <div style="display: flex; gap: 1rem; justify-content: center;">
+                                    <a href="https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(window.location.href)}" target="_blank" class="btn btn-outline" style="border-radius: 50%; width: 50px; height: 50px; padding: 0; display: flex; align-items: center; justify-content: center;">
+                                        <i class="fab fa-twitter"></i>
+                                    </a>
+                                    <a href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}" target="_blank" class="btn btn-outline" style="border-radius: 50%; width: 50px; height: 50px; padding: 0; display: flex; align-items: center; justify-content: center;">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </a>
+                                    <a href="https://wa.me/?text=${encodeURIComponent(post.title + ' ' + window.location.href)}" target="_blank" class="btn btn-outline" style="border-radius: 50%; width: 50px; height: 50px; padding: 0; display: flex; align-items: center; justify-content: center;">
+                                        <i class="fab fa-whatsapp"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } catch (error) {
+                container.innerHTML = `
+                    <div class="error-message">
+                        <h2>Error Loading Post</h2>
+                        <p>${error.message}</p>
+                        <a href="blog.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Blog</a>
+                    </div>
+                `;
+            }
+        }
+
+        // Load detail when DOM is ready
+        if (document.getElementById('blogDetail')) {
+            loadBlogDetail();
+        }
+    </script>
+</body>
+</html>

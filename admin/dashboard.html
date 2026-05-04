@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - TEGO Admin</title>
+    <link rel="stylesheet" href="css/admin.css?v=2">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard" id="dashboard">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h2><span style="margin-right: 0.5rem;">🌿</span> TEGO Admin</h2>
+            </div>
+            <ul class="sidebar-nav">
+                <li><a href="#" class="active" onclick="showSection('overview')"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="#" onclick="showSection('projects')"><i class="fas fa-project-diagram"></i> Projects</a></li>
+                <li><a href="#" onclick="showSection('blog')"><i class="fas fa-newspaper"></i> Blog Posts</a></li>
+                <li><a href="#" onclick="showSection('messages')"><i class="fas fa-envelope"></i> Messages</a></li>
+                <li><a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <div class="top-bar">
+                <div>
+                    <h1 id="pageTitle">Dashboard Overview</h1>
+                    <p class="breadcrumb">Home / Dashboard</p>
+                </div>
+                <div class="user-menu">
+                    <span style="color: var(--text-light); font-size: 0.875rem;">Admin User</span>
+                    <div class="user-avatar">A</div>
+                </div>
+            </div>
+
+            <!-- Overview -->
+            <div id="overview" class="content-section">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon green"><i class="fas fa-project-diagram"></i></div>
+                        <div class="stat-info"><h3 id="statProjects">0</h3><p>Projects</p></div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon blue"><i class="fas fa-newspaper"></i></div>
+                        <div class="stat-info"><h3 id="statBlog">0</h3><p>Blog Posts</p></div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon orange"><i class="fas fa-envelope"></i></div>
+                        <div class="stat-info"><h3 id="statMessages">0</h3><p>Messages</p></div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon red"><i class="fas fa-bell"></i></div>
+                        <div class="stat-info"><h3 id="statUnread">0</h3><p>Unread</p></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Projects -->
+            <div id="projects" class="content-section hidden">
+                <div class="card">
+                    <div class="card-header">
+                        <h3><i class="fas fa-project-diagram" style="margin-right: 0.5rem;"></i>Projects</h3>
+                        <button class="btn btn-success btn-sm" onclick="addNewProject()">
+                            <i class="fas fa-plus"></i> Add Project
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="projectsTable">
+                                <thead>
+                                    <tr><th>ID</th><th>Image</th><th>Title</th><th>Category</th><th>Status</th><th>Location</th><th style="width:150px">Actions</th></tr>
+                                </thead>
+                                <tbody id="projectsTableBody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Blog -->
+            <div id="blog" class="content-section hidden">
+                <div class="card">
+                    <div class="card-header">
+                        <h3><i class="fas fa-newspaper" style="margin-right: 0.5rem;"></i>Blog Posts</h3>
+                        <button class="btn btn-success btn-sm" onclick="addNewBlog()">
+                            <i class="fas fa-plus"></i> Add Post
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="blogTable">
+                                <thead>
+                                    <tr><th>ID</th><th>Image</th><th>Title</th><th>Author</th><th>Status</th><th>Date</th><th style="width:150px">Actions</th></tr>
+                                </thead>
+                                <tbody id="blogTableBody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Messages -->
+            <div id="messages" class="content-section hidden">
+                <div class="card">
+                    <div class="card-header">
+                        <h3><i class="fas fa-envelope" style="margin-right: 0.5rem;"></i>Messages</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="messagesTable">
+                                <thead>
+                                    <tr><th>ID</th><th>Name</th><th>Email</th><th>Subject</th><th>Status</th><th style="width:150px">Actions</th></tr>
+                                </thead>
+                                <tbody id="messagesTableBody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Project Modal -->
+    <div class="modal-overlay" id="projectModal" onclick="if(event.target===this)closeModal('projectModal')">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 id="projectModalTitle">Add Project</h3>
+                <button class="close-btn" onclick="closeModal('projectModal')"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="projectId">
+                <div class="form-group"><label>Title *</label><input type="text" class="form-control" id="projectTitle"></div>
+                <div class="form-group"><label>Slug *</label><input type="text" class="form-control" id="projectSlug"></div>
+                <div class="form-group"><label>Summary</label><textarea class="form-control" id="projectSummary" rows="2"></textarea></div>
+                <div class="form-group"><label>Description</label><textarea class="form-control" id="projectDescription" rows="3"></textarea></div>
+                
+                <!-- IMAGE UPLOAD -->
+                <div class="form-group">
+                    <label>Project Image</label>
+                    <input type="file" class="form-control" id="projectImage" accept="image/*">
+                    <div id="projectImagePreview" style="margin-top:0.5rem;"></div>
+                </div>
+                
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+                    <div class="form-group"><label>Category</label><input type="text" class="form-control" id="projectCategory"></div>
+                    <div class="form-group"><label>Status</label>
+                        <select class="form-control" id="projectStatus">
+                            <option value="ongoing">Ongoing</option><option value="completed">Completed</option><option value="planned">Planned</option>
+                        </select>
+                    </div>
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+                    <div class="form-group"><label>Location</label><input type="text" class="form-control" id="projectLocation"></div>
+                    <div class="form-group"><label>Beneficiaries</label><input type="number" class="form-control" id="projectBeneficiaries" value="0"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('projectModal')">Cancel</button>
+                <button class="btn btn-success" onclick="saveProject()"><i class="fas fa-save"></i> Save</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Blog Modal -->
+    <div class="modal-overlay" id="blogModal" onclick="if(event.target===this)closeModal('blogModal')">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 id="blogModalTitle">Add Blog Post</h3>
+                <button class="close-btn" onclick="closeModal('blogModal')"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="blogId">
+                <div class="form-group"><label>Title *</label><input type="text" class="form-control" id="blogTitle"></div>
+                <div class="form-group"><label>Slug *</label><input type="text" class="form-control" id="blogSlug"></div>
+                <div class="form-group"><label>Excerpt</label><textarea class="form-control" id="blogExcerpt" rows="2"></textarea></div>
+                <div class="form-group"><label>Content *</label><textarea class="form-control" id="blogContent" rows="4"></textarea></div>
+                
+                <!-- IMAGE UPLOAD -->
+                <div class="form-group">
+                    <label>Blog Image</label>
+                    <input type="file" class="form-control" id="blogImage" accept="image/*">
+                    <div id="blogImagePreview" style="margin-top:0.5rem;"></div>
+                </div>
+                
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+                    <div class="form-group"><label>Author</label><input type="text" class="form-control" id="blogAuthor"></div>
+                    <div class="form-group"><label>Category</label><input type="text" class="form-control" id="blogCategory"></div>
+                </div>
+                <div class="form-group">
+                    <label style="display:flex;align-items:center;gap:0.5rem;cursor:pointer">
+                        <input type="checkbox" id="blogPublished" checked style="width:auto"> <span>Published</span>
+                    </label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('blogModal')">Cancel</button>
+                <button class="btn btn-success" onclick="saveBlog()"><i class="fas fa-save"></i> Save</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Detail Modal -->
+    <div class="modal-overlay" id="detailModal" onclick="if(event.target===this)closeModal('detailModal')">
+        <div class="modal" style="max-width:700px">
+            <div class="modal-header">
+                <h3 id="detailModalTitle">Details</h3>
+                <button class="close-btn" onclick="closeModal('detailModal')"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body" id="detailModalBody"></div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('detailModal')">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/admin.js?v=2"></script>
+</body>
+</html>

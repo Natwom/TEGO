@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog & Updates - TEGO</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">🌿</div>
+                <span>TEGO</span>
+            </a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="work.html">Our Work</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="blog.html" class="active">Blog</a></li>
+                <li><a href="get-involved.html">Get Involved</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="get-involved.html" class="btn btn-primary" style="padding: 0.5rem 1.25rem; font-size: 0.9rem;">Donate</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="about-hero">
+        <div class="container">
+            <h1>Blog & Updates</h1>
+            <p style="font-size: 1.2rem; opacity: 0.9;">Stories from the field and latest news</p>
+        </div>
+    </section>
+
+    <section class="section" style="background: white;">
+        <div class="container">
+            <div class="section-header">
+                <h2>Latest Stories</h2>
+                <p>Updates from our programs and communities in Turkana</p>
+            </div>
+            <div class="blog-grid" id="blogContainer">
+                <!-- Blog posts loaded dynamically -->
+            </div>
+            <div class="text-center mt-2">
+                <button class="btn btn-outline" style="color: var(--dark); border-color: var(--gray);" onclick="alert('More posts coming soon!')">Load More Posts</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background: var(--light-gray);">
+        <div class="container">
+            <div class="section-header">
+                <h2>Newsletter</h2>
+                <p>Subscribe to receive updates directly to your inbox</p>
+            </div>
+            <div style="max-width: 500px; margin: 0 auto; text-align: center;">
+                <form onsubmit="event.preventDefault(); alert('Thank you for subscribing!');" style="display: flex; gap: 1rem;">
+                    <input type="email" placeholder="Enter your email" class="form-control" required style="flex: 1;">
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo" style="color: white;">
+                        <div class="logo-icon" style="background: var(--accent-green);">🌿</div>
+                        <span>TEGO</span>
+                    </div>
+                    <p>Turkana Eco-Green Organization is committed to empowering communities through climate resilience and sustainable development.</p>
+                </div>
+                <div>
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="work.html">Our Work</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Get Involved</h4>
+                    <ul class="footer-links">
+                        <li><a href="get-involved.html">Donate</a></li>
+                        <li><a href="get-involved.html">Volunteer</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Contact</h4>
+                    <ul class="footer-links">
+                        <li>📍 Turkana County, Kenya</li>
+                        <li>📧 info@tego.org</li>
+                        <li>📱 +254 700 000 000</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 TEGO. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

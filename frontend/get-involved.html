@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Involved - TEGO</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">🌿</div>
+                <span>TEGO</span>
+            </a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="work.html">Our Work</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="get-involved.html" class="active">Get Involved</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="get-involved.html" class="btn btn-primary" style="padding: 0.5rem 1.25rem; font-size: 0.9rem;">Donate</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="about-hero">
+        <div class="container">
+            <h1>Get Involved</h1>
+            <p style="font-size: 1.2rem; opacity: 0.9;">Be part of the change in Turkana</p>
+        </div>
+    </section>
+
+    <section class="section" style="background: white;">
+        <div class="container">
+            <div class="section-header">
+                <h2>Ways to Support</h2>
+                <p>Whether you donate, volunteer, or partner with us, your contribution makes a real difference.</p>
+            </div>
+            <div class="involve-grid">
+                <div class="involve-card">
+                    <div class="involve-icon">💚</div>
+                    <h3>Donate</h3>
+                    <p style="color: var(--gray); margin: 1rem 0; line-height: 1.7;">Your financial support helps us expand our programs, reach more communities, and create lasting impact. Every contribution counts.</p>
+                    <ul style="list-style: none; text-align: left; margin: 1.5rem 0; color: var(--gray);">
+                        <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: var(--primary-green); margin-right: 0.5rem;"></i> One-time or recurring donations</li>
+                        <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: var(--primary-green); margin-right: 0.5rem;"></i> Support specific projects</li>
+                        <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: var(--primary-green); margin-right: 0.5rem;"></i> Corporate giving programs</li>
+                    </ul>
+                    <a href="#donate" class="btn btn-primary" style="width: 100%;">Donate Now</a>
+                </div>
+                <div class="involve-card">
+                    <div class="involve-icon">🤲</div>
+                    <h3>Volunteer</h3>
+                    <p style="color: var(--gray); margin: 1rem 0; line-height: 1.7;">Share your skills and time with our community programs. We welcome both local and international volunteers.</p>
+                    <ul style="list-style: none; text-align: left; margin: 1.5rem 0; color: var(--gray);">
+                        <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: var(--primary-green); margin-right: 0.5rem;"></i> Field program support</li>
+                        <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: var(--primary-green); margin-right: 0.5rem;"></i> Training and mentorship</li>
+                        <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: var(--primary-green); margin-right: 0.5rem;"></i> Administrative support</li>
+                    </ul>
+                    <a href="#volunteer" class="btn btn-secondary" style="width: 100%;">Become a Volunteer</a>
+                </div>
+                <div class="involve-card">
+                    <div class="involve-icon">🤝</div>
+                    <h3>Partner</h3>
+                    <p style="color: var(--gray); margin: 1rem 0; line-height: 1.7;">Collaborate with us to amplify our impact. We partner with NGOs, government agencies, and private sector organizations.</p>
+                    <ul style="list-style: none; text-align: left; margin: 1.5rem 0; color: var(--gray);">
+                        <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: var(--primary-green); margin-right: 0.5rem;"></i> Joint program implementation</li>
+                        <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: var(--primary-green); margin-right: 0.5rem;"></i> Resource sharing</li>
+                        <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: var(--primary-green); margin-right: 0.5rem;"></i> Research collaboration</li>
+                    </ul>
+                    <a href="contact.html" class="btn btn-accent" style="width: 100%;">Partner With Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="volunteer" class="section" style="background: var(--light-gray);">
+        <div class="container">
+            <div style="max-width: 700px; margin: 0 auto;">
+                <div class="section-header">
+                    <h2>Volunteer Sign Up</h2>
+                    <p>Fill out the form below and we'll get in touch with opportunities.</p>
+                </div>
+                <form id="volunteerForm" style="background: white; padding: 2.5rem; border-radius: 16px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                        <div class="form-group">
+                            <label for="vol-firstname">First Name</label>
+                            <input type="text" id="vol-firstname" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="vol-lastname">Last Name</label>
+                            <input type="text" id="vol-lastname" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="vol-email">Email Address</label>
+                        <input type="email" id="vol-email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="vol-phone">Phone Number</label>
+                        <input type="tel" id="vol-phone" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="vol-interest">Area of Interest</label>
+                        <select id="vol-interest" class="form-control" required>
+                            <option value="">Select an area...</option>
+                            <option value="agriculture">Agriculture & Farming</option>
+                            <option value="environment">Environmental Conservation</option>
+                            <option value="water">Water & Sanitation</option>
+                            <option value="education">Education & Training</option>
+                            <option value="admin">Administration</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="vol-message">Why do you want to volunteer?</label>
+                        <textarea id="vol-message" class="form-control" rows="4"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Application</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section id="donate" class="section" style="background: white;">
+        <div class="container">
+            <div class="section-header">
+                <h2>Make a Donation</h2>
+                <p>Your generosity powers our programs. Choose how you'd like to contribute.</p>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; max-width: 900px; margin: 0 auto;">
+                <div style="background: var(--light-gray); padding: 2rem; border-radius: 12px; text-align: center; border: 2px solid transparent; cursor: pointer; transition: all 0.3s;" onmouseover="this.style.borderColor='var(--primary-green)'" onmouseout="this.style.borderColor='transparent'">
+                    <div style="font-size: 2rem; font-weight: 800; color: var(--primary-green);">ksh 5,000</div>
+                    <p style="color: var(--gray); margin: 1rem 0;">Provides seedlings and tools for one farmer</p>
+                    <button class="btn btn-primary" style="width: 100%;">Donate ksh 5,000</button>
+                </div>
+                <div style="background: var(--light-gray); padding: 2rem; border-radius: 12px; text-align: center; border: 2px solid transparent; cursor: pointer; transition: all 0.3s;" onmouseover="this.style.borderColor='var(--primary-green)'" onmouseout="this.style.borderColor='transparent'">
+                    <div style="font-size: 2rem; font-weight: 800; color: var(--primary-green);">ksh 1,000</div>
+                    <p style="color: var(--gray); margin: 1rem 0;">Supports poultry starter kit for one family</p>
+                    <button class="btn btn-primary" style="width: 100%;">Donate ksh 1,000</button>
+                </div>
+                <div style="background: var(--light-gray); padding: 2rem; border-radius: 12px; text-align: center; border: 2px solid transparent; cursor: pointer; transition: all 0.3s;" onmouseover="this.style.borderColor='var(--primary-green)'" onmouseout="this.style.borderColor='transparent'">
+                    <div style="font-size: 2rem; font-weight: 800; color: var(--primary-green);">ksh 500</div>
+                    <p style="color: var(--gray); margin: 1rem 0;">Funds training for one self-help group</p>
+                    <button class="btn btn-primary" style="width: 100%;">Donate ksh 500</button>
+                </div>
+                <div style="background: var(--primary-green); color: white; padding: 2rem; border-radius: 12px; text-align: center; border: 2px solid transparent; cursor: pointer; transition: all 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <div style="font-size: 2rem; font-weight: 800;">Custom</div>
+                    <p style="opacity: 0.9; margin: 1rem 0;">Any amount makes a difference</p>
+                    <button class="btn btn-outline" style="width: 100%; border-color: white;">Donate Any Amount</button>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 2rem; color: var(--gray);">For bank transfers or corporate partnerships, please <a href="contact.html" style="color: var(--primary-green); text-decoration: underline;">contact us</a>.</p>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo" style="color: white;">
+                        <div class="logo-icon" style="background: var(--accent-green);">🌿</div>
+                        <span>TEGO</span>
+                    </div>
+                    <p>Turkana Eco-Green Organization is committed to empowering communities through climate resilience and sustainable development.</p>
+                </div>
+                <div>
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="work.html">Our Work</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Get Involved</h4>
+                    <ul class="footer-links">
+                        <li><a href="get-involved.html">Donate</a></li>
+                        <li><a href="get-involved.html">Volunteer</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Contact</h4>
+                    <ul class="footer-links">
+                        <li>📍 Turkana County, Kenya</li>
+                        <li>📧 info@tego.org</li>
+                        <li>📱 +254 700 000 000</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 TEGO. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

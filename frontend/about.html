@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - TEGO</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* ===== STAKEHOLDERS / LEADERSHIP TEAM STYLES ===== */
+        .team-section {
+            background: var(--cream);
+            padding: 4rem 0;
+        }
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .team-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+        }
+        .team-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+        }
+        .team-image {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            display: block;
+        }
+        .team-info {
+            padding: 1.5rem;
+        }
+        .team-name {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--dark-green);
+            margin-bottom: 0.25rem;
+        }
+        .team-role {
+            font-size: 0.85rem;
+            color: var(--primary-green);
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .team-bio {
+            font-size: 0.9rem;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+        .team-social {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+        .team-social a {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--light-gray);
+            color: var(--dark-green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .team-social a:hover {
+            background: var(--primary-green);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">🌿</div>
+                <span>TEGO</span>
+            </a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html" class="active">About Us</a></li>
+                <li><a href="work.html">Our Work</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="get-involved.html">Get Involved</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="get-involved.html" class="btn btn-primary" style="padding: 0.5rem 1.25rem; font-size: 0.9rem;">Donate</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="about-hero">
+        <div class="container">
+            <h1>About TEGO</h1>
+            <p style="font-size: 1.2rem; opacity: 0.9;">Our story, vision, and commitment to Turkana</p>
+        </div>
+    </section>
+
+    <section class="section" style="background: white;">
+        <div class="container">
+            <div class="intro-grid">
+                <div class="intro-content">
+                    <h2>Our Story</h2>
+                    <p>The Turkana Eco-Green Organization (TEGO) was founded in 2020 by a group of passionate environmentalists and community development practitioners who recognized the urgent need for climate action in Turkana County.</p>
+                    <p>What began as grassroots community mobilization around tree planting and environmental awareness grew into a fully registered Community-Based Organization (CBO) in 2023, with programs spanning environmental conservation, climate adaptation, food security, and water access.</p>
+                    <p>Today, TEGO works with over 24 self-help groups and reaches more than 3,500 community members across Turkana County.</p>
+                </div>
+                <div class="intro-image">
+                    <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=800" alt="TEGO team in the field">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background: var(--light-gray);">
+        <div class="container">
+            <div class="section-header">
+                <h2>Vision & Mission</h2>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;">
+                <div style="background: white; padding: 2.5rem; border-radius: 16px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); border-left: 5px solid var(--primary-green);">
+                    <h3 style="color: var(--dark-green); margin-bottom: 1rem; font-size: 1.5rem;"><i class="fas fa-eye" style="margin-right: 0.5rem;"></i>Our Vision</h3>
+                    <p style="color: var(--gray); font-size: 1.1rem; line-height: 1.8;">A resilient and sustainable Turkana community that thrives in harmony with its environment, where every person has access to food, water, and opportunities for a dignified life.</p>
+                </div>
+                <div style="background: white; padding: 2.5rem; border-radius: 16px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); border-left: 5px solid var(--deep-blue);">
+                    <h3 style="color: var(--dark-green); margin-bottom: 1rem; font-size: 1.5rem;"><i class="fas fa-bullseye" style="margin-right: 0.5rem;"></i>Our Mission</h3>
+                    <p style="color: var(--gray); font-size: 1.1rem; line-height: 1.8;">To empower Turkana communities through climate resilience, sustainable natural resource management, and inclusive development programs that improve livelihoods and protect the environment.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background: white;">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Core Values</h2>
+                <p>The principles that guide everything we do</p>
+            </div>
+            <div class="values-grid">
+                <div class="value-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Integrity</h3>
+                    <p>We operate with transparency, accountability, and ethical standards in all our dealings.</p>
+                </div>
+                <div class="value-card">
+                    <i class="fas fa-lightbulb"></i>
+                    <h3>Innovation</h3>
+                    <p>We embrace creative solutions and new approaches to address complex environmental challenges.</p>
+                </div>
+                <div class="value-card">
+                    <i class="fas fa-leaf"></i>
+                    <h3>Sustainability</h3>
+                    <p>We design programs that create lasting impact and protect resources for future generations.</p>
+                </div>
+                <div class="value-card">
+                    <i class="fas fa-hands-helping"></i>
+                    <h3>Collaboration</h3>
+                    <p>We believe in the power of partnerships and community participation to drive meaningful change.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background: var(--cream);">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Journey</h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3 style="color: var(--dark-green);">2020</h3>
+                    <p style="color: var(--gray);">TEGO founded by community environmental activists in Turkana County.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3 style="color: var(--dark-green);">2021</h3>
+                    <p style="color: var(--gray);">Launched first tree planting campaign, engaging 5 community groups and planting 10,000 seedlings.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3 style="color: var(--dark-green);">2022</h3>
+                    <p style="color: var(--gray);">Expanded into food security programs, introducing poultry production and fodder farming.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3 style="color: var(--dark-green);">2023</h3>
+                    <p style="color: var(--gray);">Officially registered as a Community-Based Organization. Launched Integrated Livestock-Crop Systems Project.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3 style="color: var(--dark-green);">2024</h3>
+                    <p style="color: var(--gray);">Reached 3,500+ community members, established 24 self-help groups, and expanded water access programs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background: white;">
+        <div class="container">
+            <div class="section-header">
+                <h2>Organizational Structure</h2>
+                <p>TEGO is governed by a dedicated team committed to community service</p>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem;">
+                <div style="background: var(--light-gray); padding: 2rem; border-radius: 12px; text-align: center;">
+                    <div style="width: 80px; height: 80px; background: var(--primary-green); border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;"><i class="fas fa-users"></i></div>
+                    <h3 style="color: var(--dark-green);">Board of Directors</h3>
+                    <p style="color: var(--gray); margin-top: 0.5rem;">Provides strategic direction and governance oversight</p>
+                </div>
+                <div style="background: var(--light-gray); padding: 2rem; border-radius: 12px; text-align: center;">
+                    <div style="width: 80px; height: 80px; background: var(--deep-blue); border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;"><i class="fas fa-user-tie"></i></div>
+                    <h3 style="color: var(--dark-green);">Executive Director</h3>
+                    <p style="color: var(--gray); margin-top: 0.5rem;">Leads program implementation and operations</p>
+                </div>
+                <div style="background: var(--light-gray); padding: 2rem; border-radius: 12px; text-align: center;">
+                    <div style="width: 80px; height: 80px; background: var(--earth-brown); border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;"><i class="fas fa-people-carry"></i></div>
+                    <h3 style="color: var(--dark-green);">Program Team</h3>
+                    <p style="color: var(--gray); margin-top: 0.5rem;">Field officers and project coordinators</p>
+                </div>
+                <div style="background: var(--light-gray); padding: 2rem; border-radius: 12px; text-align: center;">
+                    <div style="width: 80px; height: 80px; background: var(--light-green); border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;"><i class="fas fa-hand-holding-heart"></i></div>
+                    <h3 style="color: var(--dark-green);">Community Volunteers</h3>
+                    <p style="color: var(--gray); margin-top: 0.5rem;">Local champions driving change at the grassroots</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== NEW: STAKEHOLDERS / LEADERSHIP TEAM SECTION ===== -->
+    <section class="section team-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Meet Our Team</h2>
+                <p>The dedicated individuals driving TEGO's mission forward</p>
+            </div>
+            <div class="team-grid">
+
+                <!-- Team Member 1 -->
+                <div class="team-card">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400" alt="John Ekiru" class="team-image">
+                    <div class="team-info">
+                        <div class="team-name">John Ekiru</div>
+                        <div class="team-role">Executive Director</div>
+                        <div class="team-bio">
+                            Visionary leader with 15+ years in community development and environmental conservation across Northern Kenya.
+                        </div>
+                        <div class="team-social">
+                            <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" title="Email"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 2 -->
+                <div class="team-card">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400" alt="Grace Lokwawi" class="team-image">
+                    <div class="team-info">
+                        <div class="team-name">Grace Lokwawi</div>
+                        <div class="team-role">Programs Director</div>
+                        <div class="team-bio">
+                            Agricultural specialist passionate about climate-smart farming and women's economic empowerment.
+                        </div>
+                        <div class="team-social">
+                            <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" title="Email"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 3 -->
+                <div class="team-card">
+                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400" alt="Peter Lokaale" class="team-image">
+                    <div class="team-info">
+                        <div class="team-name">Peter Lokaale</div>
+                        <div class="team-role">Finance & Admin Manager</div>
+                        <div class="team-bio">
+                            Chartered accountant ensuring transparent resource management and sustainable organizational growth.
+                        </div>
+                        <div class="team-social">
+                            <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" title="Email"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 4 -->
+                <div class="team-card">
+                    <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400" alt="Amina Nakiru" class="team-image">
+                    <div class="team-info">
+                        <div class="team-name">Amina Nakiru</div>
+                        <div class="team-role">Community Liaison Officer</div>
+                        <div class="team-bio">
+                            Grassroots mobilizer bridging the gap between TEGO programs and local community needs.
+                        </div>
+                        <div class="team-social">
+                            <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" title="Email"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 5 -->
+                <div class="team-card">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400" alt="David Etabo" class="team-image">
+                    <div class="team-info">
+                        <div class="team-name">David Etabo</div>
+                        <div class="team-role">Environmental Officer</div>
+                        <div class="team-bio">
+                            Conservation biologist leading reforestation and climate adaptation initiatives in arid zones.
+                        </div>
+                        <div class="team-social">
+                            <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" title="Email"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 6 -->
+                <div class="team-card">
+                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400" alt="Mary Akai" class="team-image">
+                    <div class="team-info">
+                        <div class="team-name">Mary Akai</div>
+                        <div class="team-role">Monitoring & Evaluation</div>
+                        <div class="team-bio">
+                            Data-driven professional tracking program impact and ensuring accountability to donors and communities.
+                        </div>
+                        <div class="team-social">
+                            <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" title="Email"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo" style="color: white;">
+                        <div class="logo-icon" style="background: var(--accent-green);">🌿</div>
+                        <span>TEGO</span>
+                    </div>
+                    <p>Turkana Eco-Green Organization is committed to empowering communities through climate resilience and sustainable development.</p>
+                </div>
+                <div>
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="work.html">Our Work</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Get Involved</h4>
+                    <ul class="footer-links">
+                        <li><a href="get-involved.html">Donate</a></li>
+                        <li><a href="get-involved.html">Volunteer</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Contact</h4>
+                    <ul class="footer-links">
+                        <li>📍 Turkana County, Kenya</li>
+                        <li>📧 Email: tecogreencbo@gmail.com</li>
+                        <li>📱 +254 700 135 210</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 TEGO. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
