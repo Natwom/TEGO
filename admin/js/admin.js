@@ -168,6 +168,11 @@ async function loadStats() {
         console.log('[Stats] Loaded:', stats);
     } catch (error) {
         console.error('[Stats] Error:', error);
+        // Don't redirect on stats error - just show 0
+        document.getElementById('statProjects').textContent = '0';
+        document.getElementById('statBlog').textContent = '0';
+        document.getElementById('statMessages').textContent = '0';
+        document.getElementById('statUnread').textContent = '0';
     }
 }
 

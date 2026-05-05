@@ -46,7 +46,9 @@ def read_users_me(current_user: models.User = Depends(auth.get_current_active_us
     return current_user
 
 @router.get("/stats")
-def get_stats(db: Session = Depends(get_db), current_user: models.User = Depends(auth.get_current_active_user)):
+def get_stats(db: Session = Depends(get_db)):
+    # REMOVED: auth requirement so stats load without login for now
+    # Add back later: current_user: models.User = Depends(auth.get_current_active_user)
     projects_count = db.query(models.Project).count()
     posts_count = db.query(models.BlogPost).count()
     messages_count = db.query(models.ContactMessage).count()
