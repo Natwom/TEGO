@@ -1,5 +1,7 @@
 import os
 import uuid
+import cloudinary
+import cloudinary.uploader
 from fastapi import APIRouter, Depends, HTTPException, UploadFile, File, Form
 from sqlalchemy.orm import Session
 from typing import List, Optional
@@ -7,19 +9,20 @@ from typing import List, Optional
 from app.database import get_db
 from app import models, schemas
 
-router = APIRouter(prefix="/api/projects", tags=["projects"])
+# Configure Cloudinary
+cloudinary.config(
+    cloud_name=os.getenv("CLOUDINARY_CLOUD_NAME"),
+    api_key=os.getenv("CLOUDINARY_API_KEY"),
+    api_secret=os.getenv("CLOUDINARY_API_SECRET"),
+    secure=True
+)
 
-BACKEND_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-UPLOAD_DIR = os.path.join(BACKEND_DIR, "uploads", "projects")
-os.makedirs(UPLOAD_DIR, exist_ok=True)
+router = APIRouter(prefix="/api/projects", tags=["projects"])
 
 ALLOWED_EXT = {".jpg", ".jpeg", ".png", ".gif", ".webp"}
 
-print(f"[PROJECTS] Upload dir: {UPLOAD_DIR}")
-print(f"[PROJECTS] Upload dir exists: {os.path.exists(UPLOAD_DIR)}")
 
-
-def save_image(file: UploadFile, folder: str) -> Optional[str]:
+def save_image(file: UploadFile) -> Optional[str]:
     if not file or not file.filename:
         print("[PROJECTS] No file provided")
         return None
@@ -28,20 +31,15 @@ def save_image(file: UploadFile, folder: str) -> Optional[str]:
     if ext not in ALLOWED_EXT:
         raise HTTPException(status_code=400, detail=f"Invalid image format '{ext}'. Use jpg, png, gif, or webp.")
     
-    unique = f"{uuid.uuid4()}{ext}"
-    path = os.path.join(folder, unique)
-    
-    print(f"[PROJECTS] Saving image to: {path}")
+    print(f"[PROJECTS] Uploading to Cloudinary: {file.filename}")
     
     try:
-        contents = file.file.read()
-        with open(path, "wb") as f:
-            f.write(contents)
-        print(f"[PROJECTS] Image saved successfully: {unique}")
-        return f"https://tego-api.onrender.com/uploads/projects/{unique}"
+        result = cloudinary.uploader.upload(file.file, folder="tego/projects")
+        print(f"[PROJECTS] Cloudinary upload success: {result['secure_url']}")
+        return result["secure_url"]
     except Exception as e:
-        print(f"[PROJECTS] ERROR saving image: {e}")
-        raise HTTPException(status_code=500, detail=f"Failed to save image: {str(e)}")
+        print(f"[PROJECTS] ERROR uploading to Cloudinary: {e}")
+        raise HTTPException(status_code=500, detail=f"Failed to upload image: {str(e)}")
 
 
 @router.get("/", response_model=List[schemas.ProjectResponse])
@@ -74,10 +72,10 @@ def create_project(
     print(f"[PROJECTS] Creating project: title={title}, slug={slug}")
     
     try:
-        image_url = save_image(image, UPLOAD_DIR)
+        image_url = save_image(image)
         print(f"[PROJECTS] image_url={image_url}")
     except Exception as e:
-        print(f"[PROJECTS] Image save failed: {e}")
+        print(f"[PROJECTS] Image upload failed: {e}")
         raise
     
     db_project = models.Project(
@@ -129,7 +127,7 @@ def update_project(
     
     if image:
         try:
-            db_project.image_url = save_image(image, UPLOAD_DIR)
+            db_project.image_url = save_image(image)
         except Exception as e:
             print(f"[PROJECTS] Image update failed: {e}")
             raise

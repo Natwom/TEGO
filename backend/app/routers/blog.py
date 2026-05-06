@@ -1,5 +1,7 @@
 import os
 import uuid
+import cloudinary
+import cloudinary.uploader
 from fastapi import APIRouter, Depends, HTTPException, UploadFile, File, Form
 from sqlalchemy.orm import Session
 from typing import List, Optional
@@ -7,19 +9,20 @@ from typing import List, Optional
 from app.database import get_db
 from app import models, schemas
 
-router = APIRouter(prefix="/api/blog", tags=["blog"])
+# Configure Cloudinary
+cloudinary.config(
+    cloud_name=os.getenv("CLOUDINARY_CLOUD_NAME"),
+    api_key=os.getenv("CLOUDINARY_API_KEY"),
+    api_secret=os.getenv("CLOUDINARY_API_SECRET"),
+    secure=True
+)
 
-BACKEND_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-UPLOAD_DIR = os.path.join(BACKEND_DIR, "uploads", "blogs")
-os.makedirs(UPLOAD_DIR, exist_ok=True)
+router = APIRouter(prefix="/api/blog", tags=["blog"])
 
 ALLOWED_EXT = {".jpg", ".jpeg", ".png", ".gif", ".webp"}
 
-print(f"[BLOG] Upload dir: {UPLOAD_DIR}")
-print(f"[BLOG] Upload dir exists: {os.path.exists(UPLOAD_DIR)}")
 
-
-def save_image(file: UploadFile, folder: str) -> Optional[str]:
+def save_image(file: UploadFile) -> Optional[str]:
     if not file or not file.filename:
         print("[BLOG] No file provided")
         return None
@@ -28,20 +31,15 @@ def save_image(file: UploadFile, folder: str) -> Optional[str]:
     if ext not in ALLOWED_EXT:
         raise HTTPException(status_code=400, detail=f"Invalid image format '{ext}'. Use jpg, png, gif, or webp.")
     
-    unique = f"{uuid.uuid4()}{ext}"
-    path = os.path.join(folder, unique)
-    
-    print(f"[BLOG] Saving image to: {path}")
+    print(f"[BLOG] Uploading to Cloudinary: {file.filename}")
     
     try:
-        contents = file.file.read()
-        with open(path, "wb") as f:
-            f.write(contents)
-        print(f"[BLOG] Image saved successfully: {unique}")
-        return f"https://tego-api.onrender.com/uploads/blogs/{unique}"
+        result = cloudinary.uploader.upload(file.file, folder="tego/blogs")
+        print(f"[BLOG] Cloudinary upload success: {result['secure_url']}")
+        return result["secure_url"]
     except Exception as e:
-        print(f"[BLOG] ERROR saving image: {e}")
-        raise HTTPException(status_code=500, detail=f"Failed to save image: {str(e)}")
+        print(f"[BLOG] ERROR uploading to Cloudinary: {e}")
+        raise HTTPException(status_code=500, detail=f"Failed to upload image: {str(e)}")
 
 
 @router.get("/", response_model=List[schemas.BlogPostResponse])
@@ -73,7 +71,7 @@ def create_post(
     print(f"[BLOG] Creating post: title={title}, slug={slug}")
     
     try:
-        image_url = save_image(image, UPLOAD_DIR)
+        image_url = save_image(image)
         print(f"[BLOG] image_url={image_url}")
     except Exception as e:
         print(f"[BLOG] Image save failed: {e}")
@@ -125,7 +123,7 @@ def update_post(
     
     if image:
         try:
-            db_post.image_url = save_image(image, UPLOAD_DIR)
+            db_post.image_url = save_image(image)
         except Exception as e:
             print(f"[BLOG] Image update failed: {e}")
             raise
