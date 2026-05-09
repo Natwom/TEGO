@@ -1,5 +1,5 @@
 import os
-os.environ["DATABASE_URL"] = "postgresql://postgres.[NEW-REF]:[PASSWORD]@aws-0-eu-west-1.pooler.supabase.com:5432/postgres"
+os.environ["DATABASE_URL"] = "postgresql://postgres.dzvyeutupeuukjnvntpe:Apiaro%402026@aws-0-eu-west-1.pooler.supabase.com:5432/postgres"
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -24,14 +24,13 @@ tables = [
 ]
 
 for name, model in tables:
-    print(f"Migrating {name}...")
     rows = sqlite_db.query(model).all()
+    print(f"Migrating {name}: {len(rows)} rows")
     for row in rows:
         pg_db.merge(row)
     pg_db.commit()
-    print(f"  ✅ {len(rows)} rows migrated")
 
-print("🎉 TEGO data migrated!")
+print("🎉 Migration complete!")
 
 sqlite_db.close()
 pg_db.close()
